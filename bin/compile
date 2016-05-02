@@ -32,8 +32,8 @@ function export_env_dir() {
 # parse and derive params
 #EC_PLATFORM=macosx-x86-64
 EC_PLATFORM=linux-x86-64
-EC_ARCHIVE=Eiffel_14.05_gpl_95417-$EC_PLATFORM.tar.bz2
-EC_BUILD=http://sourceforge.net/projects/eiffelstudio/files/EiffelStudio%2014.05/Build_95417/
+EC_ARCHIVE=Eiffel_15.12_gpl_98497-$EC_PLATFORM-x86-64.tar.bz2/download
+EC_BUILD=https://sourceforge.net/projects/eiffelstudio/files/EiffelStudio%2015.12/Build_98497/
 BUILDPACK_DIR=$(cd $(dirname $0); cd ..; pwd) # absolute path of buildpack
 BUILD_DIR=$1
 CACHE_DIR=$2
@@ -50,7 +50,7 @@ fi
 
 EC_DIR="$CACHE_DIR/estudio"
 
-ISE_EIFFEL=$EC_DIR/Eiffel_14.05
+ISE_EIFFEL=$EC_DIR/Eiffel_15.12
 ISE_PLATFORM=$EC_PLATFORM
 PATH=$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH
 export ISE_EIFFEL
