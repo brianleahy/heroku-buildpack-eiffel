@@ -39,11 +39,6 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
-echo "Current directory:"
-ls -lah .
-echo "BUILD_DIR listing:"
-ls -lah $BUILD_DIR
-
 export_env_dir
 
 echo "-----> compile params: $BUILD_DIR $CACHE_DIR $ENV_DIR"
@@ -105,7 +100,13 @@ echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 export KI_SOURCE=$BUILD_DIR/navigator-server
 pwd
 
+echo "BUILD_DIR listing:"
+ls -lah $BUILD_DIR
+echo "navigator-server listing:"
 ls -lah $KI_SOURCE
+echo "navigator-web listing:"
+ls -lah $BUILD_DIR/navigator-web
+
 ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
 
 cp -r $EC_DIR $BUILD_DIR
