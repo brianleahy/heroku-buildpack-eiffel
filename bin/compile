@@ -53,7 +53,7 @@ EC_DIR="$CACHE_DIR/estudio"
 ISE_EIFFEL=$EC_DIR/Eiffel_15.12
 ISE_PLATFORM=$EC_PLATFORM
 PATH=$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH
-echo $PATH
+echo "PATH=$PATH"
 export ISE_EIFFEL
 export ISE_PLATFORM
 CFLAGS="-I$BUILD_DIR/.apt/usr/include -L$BUILD_DIR/.apt/usr/lib"
@@ -65,7 +65,6 @@ MYSQLLIB=/usr/lib/x86_64-linux-gnu
 export MYSQLLIB
 
 echo "-----> Checking Eiffel Compiler"
-pwd
 if [ ! -d $EC_DIR ]; then
     echo "Fetching Eiffel Compiler" | indent
 	mkdir -p $EC_DIR
@@ -101,12 +100,13 @@ echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 export KI_SOURCE=$BUILD_DIR/navigator-server
 pwd
 
+ls -lah $KI_SOURCE
 ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
 
 cp -r $EC_DIR $BUILD_DIR
 cp -r EIFGENs $BUILD_DIR
 ls -lah $BUILD_DIR/.apt/usr/lib
-ls -lah /usr/lib
+# ls -lah /usr/lib
 
 cd EIFGENs/$EC_TARGET/F_code
 finish_freezing
