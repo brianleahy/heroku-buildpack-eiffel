@@ -101,7 +101,7 @@ export KI_SOURCE=$BUILD_DIR/navigator-server
 
 pushd .
 cd $BUILD_DIR
-git clone https://github.com/KnowledgeInitiatives/navigator-server navigator-server
+git clone https://github.com/KnowledgeInitiatives/navigator-server?access_token=79cad6d16e075bedb4fd27d47beb55b1465664cd navigator-server
 popd
 
 echo "BUILD_DIR listing:"
