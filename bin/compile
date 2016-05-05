@@ -99,9 +99,10 @@ echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 
 export KI_SOURCE=$BUILD_DIR/navigator-server
 
-pushd
-cd navigator-server
-git fetch https://github.com/KnowledgeInitiatives/navigator-server
+pushd .
+cd $BUILD_DIR
+unset GIT_DIR
+git submodule update --init --recursive
 popd
 
 echo "BUILD_DIR listing:"
