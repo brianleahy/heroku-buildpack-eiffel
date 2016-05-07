@@ -99,11 +99,6 @@ echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 
 export KI_SOURCE=$BUILD_DIR/navigator-server
 
-pushd .
-cd $BUILD_DIR
-git clone https://github.com/KnowledgeInitiatives/navigator-server.git?access_token=79cad6d16e075bedb4fd27d47beb55b1465664cd navigator-server
-popd
-
 echo "BUILD_DIR listing:"
 ls -lah $BUILD_DIR
 echo "navigator-server listing:"
@@ -111,6 +106,7 @@ ls -lah $KI_SOURCE
 echo "navigator-web listing:"
 ls -lah $BUILD_DIR/navigator-web
 
+ec -version
 ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
 
 cp -r $EC_DIR $BUILD_DIR
