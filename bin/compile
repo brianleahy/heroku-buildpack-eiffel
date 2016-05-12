@@ -110,7 +110,7 @@ echo "navigator-web listing:"
 ls -lah $BUILD_DIR/navigator-web
 
 ec -version
-ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
+# ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
 
 cp -r $EC_DIR $BUILD_DIR
 cp -r EIFGENs $BUILD_DIR
