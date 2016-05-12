@@ -64,14 +64,10 @@ export MYSQLINC
 MYSQLLIB=/usr/lib/x86_64-linux-gnu
 export MYSQLLIB
 
-echo "gtk:"
 if pkg-config --modversion gtk+-2.0; then
     echo "--->GTK exists"
 else
-    echo "--->Installing GTK"
-    sudo apt-get install libgtk2.0-dev
-    sudo apt-get install libxtst-dev
-    echo "--->GTK installed"
+    echo "--->No GTK"
 fi
 
 echo "-----> Checking Eiffel Compiler"
