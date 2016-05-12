@@ -65,7 +65,11 @@ MYSQLLIB=/usr/lib/x86_64-linux-gnu
 export MYSQLLIB
 
 echo "gtk:"
-pkg-config --modversion gtk+-2.0
+if pkg-config --modversion gtk+-2.0; then
+    echo "GTK installed"
+else
+    echo "No GTK"
+fi
 
 echo "-----> Checking Eiffel Compiler"
 if [ ! -d $EC_DIR ]; then
