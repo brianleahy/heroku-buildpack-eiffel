@@ -66,9 +66,12 @@ export MYSQLLIB
 
 echo "gtk:"
 if pkg-config --modversion gtk+-2.0; then
-    echo "GTK installed"
+    echo "--->GTK exists"
 else
-    echo "No GTK"
+    echo "--->Installing GTK"
+    apt-get install libgtk2.0-dev
+    apt-get install libxtst-dev
+    echo "--->GTK installed"
 fi
 
 echo "-----> Checking Eiffel Compiler"
@@ -112,7 +115,7 @@ echo "CACHE_DIR listing:"
 ls -lah $CACHE_DIR
 
 ec -version
-# ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
+ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
 
 cp -r $EC_DIR $BUILD_DIR
 cp -r EIFGENs $BUILD_DIR
