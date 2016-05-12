@@ -69,8 +69,8 @@ if pkg-config --modversion gtk+-2.0; then
     echo "--->GTK exists"
 else
     echo "--->Installing GTK"
-    apt-get install libgtk2.0-dev
-    apt-get install libxtst-dev
+    sudo apt-get install libgtk2.0-dev
+    sudo apt-get install libxtst-dev
     echo "--->GTK installed"
 fi
 
