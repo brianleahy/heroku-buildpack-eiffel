@@ -108,10 +108,8 @@ export KI_SOURCE=$BUILD_DIR/navigator-server
 
 echo "BUILD_DIR listing:"
 ls -lah $BUILD_DIR
-echo "navigator-server listing:"
-ls -lah $KI_SOURCE
-echo "navigator-web listing:"
-ls -lah $BUILD_DIR/navigator-web
+echo "CACHE_DIR listing:"
+ls -lah $CACHE_DIR
 
 ec -version
 # ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
