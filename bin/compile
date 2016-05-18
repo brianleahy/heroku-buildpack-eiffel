@@ -54,6 +54,9 @@ ISE_EIFFEL=$EC_DIR/Eiffel_15.12
 ISE_PLATFORM=$EC_PLATFORM
 PATH=$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH
 echo "PATH=$PATH"
+PKG_CONFIG_PATH=$CACHE_DIR/.apt/usr/share/pkgconfig:$PKG_CONFIG_PATH
+echo "PKG_CONFIG_PATH=$PKG_CONFIG_PATH"
+find / -name *xinerama*
 export ISE_EIFFEL
 export ISE_PLATFORM
 CFLAGS="-I$BUILD_DIR/.apt/usr/include -L$BUILD_DIR/.apt/usr/lib"
