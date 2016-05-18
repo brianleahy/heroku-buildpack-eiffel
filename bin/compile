@@ -60,7 +60,7 @@ find / -name *xinerama*
 export ISE_EIFFEL
 export ISE_PLATFORM
 CFLAGS="-I$BUILD_DIR/.apt/usr/include -L$BUILD_DIR/.apt/usr/lib"
-CFLAGS="-I/usr/include -I$BUILD_DIR/.apt/usr/include/gtk-2.0 -L/usr/lib"
+CFLAGS="-I/usr/include -I$BUILD_DIR/.apt/usr/include -L/usr/lib"
 export CFLAGS
 MYSQLINC=/usr/include/mysql
 export MYSQLINC
