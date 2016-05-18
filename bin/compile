@@ -112,6 +112,8 @@ echo "BUILD_DIR listing:"
 ls -lah $BUILD_DIR
 echo "CACHE_DIR listing:"
 ls -lah $CACHE_DIR
+echo "New lib dir listing:"
+ls -lah $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu
 
 ec -version
 ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
