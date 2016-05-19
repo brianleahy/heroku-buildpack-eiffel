@@ -63,6 +63,7 @@ CFLAGS="-I$BUILD_DIR/.apt/usr/include -L$BUILD_DIR/.apt/usr/lib"
 CFLAGS="-I/usr/include -I$BUILD_DIR/.apt/usr/include -I$BUILD_DIR/.apt/usr/include/gtk-2.0 -I$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I$BUILD_DIR/.apt/usr/include/pango-1.0 -I$BUILD_DIR/.apt/usr/include/atk-1.0 -I$ISE_EIFFEL/unstable/library/network/socket/netssl/spec/include -L/usr/lib -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu -L$BUILD_DIR/.apt/usr/include"
 LDFLAGS="-L$BUILD_DIR/.apt/usr/include"
 export CFLAGS
+export LDFLAGS
 MYSQLINC=/usr/include/mysql
 export MYSQLINC
 MYSQLLIB=/usr/lib/x86_64-linux-gnu
@@ -116,6 +117,8 @@ ls -lah $CACHE_DIR
 echo "New lib dir listing:"
 ls -lah $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu
 
+echo "pwd:"
+pwd
 find . -name libatk-1.0*
 echo "LDFLAGS=$LDFLAGS"
 ld -latk-1.0 --verbose
