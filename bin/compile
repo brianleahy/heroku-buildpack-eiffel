@@ -116,6 +116,9 @@ ls -lah $CACHE_DIR
 echo "New lib dir listing:"
 ls -lah $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu
 
+find . -name libatk-1.0*
+echo "LDFLAGS=$LDFLAGS"
+ld -latk-1.0 --verbose
 ec -version
 ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
 
