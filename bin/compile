@@ -121,7 +121,7 @@ echo "pwd:"
 pwd
 find . -name libatk-1.0*
 echo "LDFLAGS=$LDFLAGS"
-ld -latk-1.0 --verbose
+ld $LDFLAGS -latk-1.0 --verbose
 ec -version
 ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
 
