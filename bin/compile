@@ -119,7 +119,10 @@ ls -lah $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu
 
 echo "pwd:"
 pwd
-find . -name libatk-1.0*
+echo "find in BUILD_DIR"
+find $BUILD_DIR -name libatk*
+echo "find in CACHE_DIR"
+find $CACHE_DIR -name libatk*
 echo "LDFLAGS=$LDFLAGS"
 ld $LDFLAGS -latk-1.0 --verbose
 ec -version
