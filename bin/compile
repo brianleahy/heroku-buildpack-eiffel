@@ -61,7 +61,7 @@ export ISE_EIFFEL
 export ISE_PLATFORM
 CFLAGS="-I$BUILD_DIR/.apt/usr/include -L$BUILD_DIR/.apt/usr/lib"
 CFLAGS="-I/usr/include -I$BUILD_DIR/.apt/usr/include -I$BUILD_DIR/.apt/usr/include/gtk-2.0 -I$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I$BUILD_DIR/.apt/usr/include/pango-1.0 -I$BUILD_DIR/.apt/usr/include/atk-1.0 -I$ISE_EIFFEL/unstable/library/network/socket/netssl/spec/include -L/usr/lib -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu -L$BUILD_DIR/.apt/usr/include"
-LDFLAGS=" -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu"
+LDFLAGS="-L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu"
 export CFLAGS
 export LDFLAGS
 MYSQLINC=/usr/include/mysql
@@ -93,7 +93,12 @@ if [ ! -d $EC_DIR ]; then
 fi
 
 echo "Eiffel Compiler installed" | indent
- 
+
+pushd
+cd //usr/lib/x86_64-linux-gnu/
+ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
+popd
+
 if [ ! $EC_CONFIG ]; then
 	EC_CONFIG=$(find $BUILD_DIR -maxdepth 1 -name "*.ecf" -print -quit | head -n 1)
 else
