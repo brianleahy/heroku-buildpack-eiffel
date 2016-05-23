@@ -97,6 +97,42 @@ echo "Eiffel Compiler installed" | indent
 pushd .
 cd /usr/x86_64-linux-gnu/lib64/
 ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
+cd //usr/local/lib/x86_64-linux-gnu/
+ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
+cd //usr/local/lib64/
+ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
+cd //lib/x86_64-linux-gnu/
+ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
+cd //lib64/
+ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
+cd //usr/lib/x86_64-linux-gnu/
+ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
+cd //usr/lib64/
+ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
+cd //usr/local/lib/
+ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
+cd //lib/
+ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
+cd //usr/lib/
+ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
+cd /usr/local/lib/x86_64-linux-gnu/
+ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
+cd /usr/local/lib64/
+ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
+cd /lib/x86_64-linux-gnu/
+ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
+cd /lib64/
+ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
+cd /usr/lib/x86_64-linux-gnu/
+ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
+cd /usr/lib64/
+ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
+cd /usr/local/lib/
+ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
+cd /lib/
+ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
+cd /usr/lib/
+ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
 popd
 
 if [ ! $EC_CONFIG ]; then
