@@ -94,8 +94,8 @@ fi
 
 echo "Eiffel Compiler installed" | indent
 
-pushd
-cd //usr/lib/x86_64-linux-gnu/
+pushd .
+cd /usr/x86_64-linux-gnu/lib64/
 ln $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so
 popd
 
