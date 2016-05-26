@@ -134,7 +134,6 @@ ec -version
 ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
 
 cp -r $EC_DIR $BUILD_DIR
-cp -r EIFGENs $BUILD_DIR
 ls -lah $BUILD_DIR/.apt/usr/lib
 # ls -lah /usr/lib
 
@@ -142,5 +141,6 @@ cd EIFGENs/$EC_TARGET/F_code
 finish_freezing
 chmod a+x $EC_TARGET
 cp $EC_TARGET $BUILD_DIR
+cp -r ../../EIFGENs $BUILD_DIR
 cd $BUILD_DIR
 
