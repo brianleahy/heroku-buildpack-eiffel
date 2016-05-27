@@ -65,7 +65,7 @@ CFLAGS="-I/usr/include -I$BUILD_DIR/.apt/usr/include -I$BUILD_DIR/.apt/usr/inclu
 LDFLAGS="-L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu"
 export CFLAGS
 export LDFLAGS
-LD="ld --moreflags"
+LD="ld -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu"
 export LD
 echo "new LD=$LD"
 MYSQLINC=/usr/include/mysql
