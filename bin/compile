@@ -59,15 +59,15 @@ echo "PKG_CONFIG_PATH=$PKG_CONFIG_PATH"
 find / -name *xinerama*
 export ISE_EIFFEL
 export ISE_PLATFORM
-echo "LD=$LD"
+# echo "LD=$LD"
 CFLAGS="-I$BUILD_DIR/.apt/usr/include -L$BUILD_DIR/.apt/usr/lib"
 CFLAGS="-I/usr/include -I$BUILD_DIR/.apt/usr/include -I$BUILD_DIR/.apt/usr/include/gtk-2.0 -I$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I$BUILD_DIR/.apt/usr/include/pango-1.0 -I$BUILD_DIR/.apt/usr/include/atk-1.0 -I$ISE_EIFFEL/unstable/library/network/socket/netssl/spec/include -L/usr/lib -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu -L$BUILD_DIR/.apt/usr/include"
-LDFLAGS="-L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu"
+# LDFLAGS="-L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu"
 export CFLAGS
-export LDFLAGS
-LD="ld -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu"
-export LD
-echo "new LD=$LD"
+# export LDFLAGS
+# LD="ld -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu"
+# export LD
+# echo "new LD=$LD"
 MYSQLINC=/usr/include/mysql
 export MYSQLINC
 MYSQLLIB=/usr/lib/x86_64-linux-gnu
@@ -96,7 +96,7 @@ if [ ! -d $EC_DIR ]; then
 	popd
 	pushd .
 	cd $ISE_EIFFEL/studio/spec/$ISE_PLATFORM/include
-	sed -i "s/'\$LD'/\$LD/" config.sh
+	sed -i -e "s/'\$LD'/\$LD/" -e "s\CCLDFLAGS =\CCLDFLAGS = -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu\" config.sh
 	popd
 fi
 
@@ -105,7 +105,7 @@ echo "Eiffel Compiler installed" | indent
 echo "---> One-time config.sh patch of existing EC installation"
 pushd .
 cd $ISE_EIFFEL/studio/spec/$ISE_PLATFORM/include
-sed -i "s/'\$LD'/\$LD/" config.sh
+sed -i "s\CCLDFLAGS =\CCLDFLAGS = -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu\" config.sh
 cat config.sh
 popd
 
