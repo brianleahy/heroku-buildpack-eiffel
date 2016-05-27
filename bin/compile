@@ -94,9 +94,20 @@ if [ ! -d $EC_DIR ]; then
 	cd $ISE_EIFFEL/library/store/dbms/rdbms/mysql/Clib
 	finish_freezing -library
 	popd
+	pushd .
+	cd $ISE_EIFFEL/studio/spec/$ISE_PLATFORM/include
+	sed -i "s/'\$LD'/\$LD/" config.sh
+	popd
 fi
 
 echo "Eiffel Compiler installed" | indent
+
+echo "---> One-time config.sh patch of existing EC installation"
+pushd .
+cd $ISE_EIFFEL/studio/spec/$ISE_PLATFORM/include
+sed -i "s/'\$LD'/\$LD/" config.sh
+cat config.sh
+popd
 
 if [ ! $EC_CONFIG ]; then
 	EC_CONFIG=$(find $BUILD_DIR -maxdepth 1 -name "*.ecf" -print -quit | head -n 1)
