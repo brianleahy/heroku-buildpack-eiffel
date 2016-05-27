@@ -96,7 +96,7 @@ if [ ! -d $EC_DIR ]; then
 	popd
 	pushd .
 	cd $ISE_EIFFEL/studio/spec/$ISE_PLATFORM/include
-	sed -i -e "s/'\$LD'/\$LD/" -e "s\CCLDFLAGS =\CCLDFLAGS = -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu\" config.sh
+	sed -i -e "s/'\$LD'/\$LD/" -e "s|CCLDFLAGS =|CCLDFLAGS = -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu|" config.sh
 	popd
 fi
 
@@ -105,7 +105,7 @@ echo "Eiffel Compiler installed" | indent
 echo "---> One-time config.sh patch of existing EC installation"
 pushd .
 cd $ISE_EIFFEL/studio/spec/$ISE_PLATFORM/include
-sed -i "s\CCLDFLAGS =\CCLDFLAGS = -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu\" config.sh
+sed -i "s|CCLDFLAGS =|CCLDFLAGS = -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu|" config.sh
 cat config.sh
 popd
 
