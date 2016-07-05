@@ -31,12 +31,6 @@ function export_env_dir() {
 
 echo "Installing Dependencies"
 
-apt-get update
-# apt-get -y install mysql-server
-# apt-get -y install mysql_secure_installation
-# apt-get -y install mysql_install_db
-# apt-get -y install libmysqld-dev
-
 EC_PLATFORM=linux-x86-64
 EC_ARCHIVE=Eiffel_16.05_gpl_98814-$EC_PLATFORM.tar.bz2
 EC_BUILD=https://sourceforge.net/projects/eiffelstudio/files/EiffelStudio%2016.05/Build_98814/
@@ -102,12 +96,12 @@ fi
 
 echo "Eiffel Compiler installed" | indent
 
-echo "---> One-time config.sh patch of existing EC installation"
-pushd .
-cd $ISE_EIFFEL/studio/spec/$ISE_PLATFORM/include
-sed -i "s|ccldflags='|ccldflags='-L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu |" config.sh
-cat config.sh
-popd
+# echo "---> One-time config.sh patch of existing EC installation"
+# pushd .
+# cd $ISE_EIFFEL/studio/spec/$ISE_PLATFORM/include
+# sed -i "s|ccldflags='|ccldflags='-L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu |" config.sh
+# cat config.sh
+# popd
 
 if [ ! $EC_CONFIG ]; then
 	EC_CONFIG=$(find $BUILD_DIR -maxdepth 1 -name "*.ecf" -print -quit | head -n 1)
