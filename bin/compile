@@ -29,8 +29,8 @@ function export_env_dir() {
   fi
 }
 
-echo "Installing Dependencies"
-
+# parse and derive params
+#EC_PLATFORM=macosx-x86-64
 EC_PLATFORM=linux-x86-64
 EC_ARCHIVE=Eiffel_16.05_gpl_98814-$EC_PLATFORM.tar.bz2
 EC_BUILD=https://sourceforge.net/projects/eiffelstudio/files/EiffelStudio%2016.05/Build_98814/
@@ -49,21 +49,29 @@ if [ $RESET_CACHE ]; then
 fi
 
 EC_DIR="$CACHE_DIR/estudio"
+
 ISE_EIFFEL=$EC_DIR/Eiffel_16.05
 ISE_PLATFORM=$EC_PLATFORM
 PATH=$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH
+echo "PATH=$PATH"
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$BUILD_DIR/.apt/usr/share/pkgconfig
-MYSQLLIB=/usr/lib/x86_64-linux-gnu
-MYSQLINC=/usr/include/mysql
-
-export CFLAGS
-export MYSQLINC
-export MYSQLLIB
+echo "PKG_CONFIG_PATH=$PKG_CONFIG_PATH"
+find / -name *xinerama*
 export ISE_EIFFEL
 export ISE_PLATFORM
-
+# echo "LD=$LD"
 CFLAGS="-I$BUILD_DIR/.apt/usr/include -L$BUILD_DIR/.apt/usr/lib"
 CFLAGS="-I/usr/include -I$BUILD_DIR/.apt/usr/include -I$BUILD_DIR/.apt/usr/include/gtk-2.0 -I$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I$BUILD_DIR/.apt/usr/include/pango-1.0 -I$BUILD_DIR/.apt/usr/include/atk-1.0 -I$ISE_EIFFEL/unstable/library/network/socket/netssl/spec/include -L/usr/lib -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu -L$BUILD_DIR/.apt/usr/include"
+# LDFLAGS="-L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu"
+export CFLAGS
+# export LDFLAGS
+# LD="ld -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu"
+# export LD
+# echo "new LD=$LD"
+MYSQLINC=/usr/include/mysql
+export MYSQLINC
+MYSQLLIB=/usr/lib/x86_64-linux-gnu
+export MYSQLLIB
 
 if pkg-config --modversion gtk+-2.0; then
     echo "--->GTK exists"
@@ -71,54 +79,51 @@ else
     echo "--->No GTK"
 fi
 
-echo "Finalizing Clibs"
-
 echo "-----> Checking Eiffel Compiler"
 if [ ! -d $EC_DIR ]; then
     echo "Fetching Eiffel Compiler" | indent
-	mkdir -p $EC_DIR
-	curl -L -O $EC_BUILD$EC_ARCHIVE 
-	tar jxf $EC_ARCHIVE -C $EC_DIR
-	rm -rf $EC_ARCHIVE
-	pushd .
-	cd $ISE_EIFFEL/library/store/dbms/rdbms/odbc/Clib
-	finish_freezing -library
-	popd
-	pushd .
-	cd $ISE_EIFFEL/library/store/dbms/rdbms/mysql/Clib
-	finish_freezing -library
-	popd
-	# pushd .
-	# cd $ISE_EIFFEL/studio/spec/$ISE_PLATFORM/include
-	# sed -i -e "s/'\$LD'/\$LD/" -e "s|ccldflags='|ccldflags='-L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu |" config.sh
-	# popd
+  mkdir -p $EC_DIR
+  curl -L -O $EC_BUILD$EC_ARCHIVE 
+  tar jxf $EC_ARCHIVE -C $EC_DIR
+  rm -rf $EC_ARCHIVE
+  pushd .
+  cd $ISE_EIFFEL/library/store/dbms/rdbms/odbc/Clib
+  finish_freezing -library
+  popd
+  pushd .
+  cd $ISE_EIFFEL/library/store/dbms/rdbms/mysql/Clib
+  finish_freezing -library
+  popd
+  pushd .
+  cd $ISE_EIFFEL/studio/spec/$ISE_PLATFORM/include
+  sed -i -e "s/'\$LD'/\$LD/" -e "s|ccldflags='|ccldflags='-L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu |" config.sh
+  popd
 fi
 
 echo "Eiffel Compiler installed" | indent
 
-# echo "---> One-time config.sh patch of existing EC installation"
-# pushd .
-# cd $ISE_EIFFEL/studio/spec/$ISE_PLATFORM/include
-# sed -i "s|ccldflags='|ccldflags='-L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu |" config.sh
-# cat config.sh
-# popd
+echo "---> One-time config.sh patch of existing EC installation"
+pushd .
+cd $ISE_EIFFEL/studio/spec/$ISE_PLATFORM/include
+sed -i "s|ccldflags='|ccldflags='-L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu |" config.sh
+cat config.sh
+popd
 
 if [ ! $EC_CONFIG ]; then
-	EC_CONFIG=$(find $BUILD_DIR -maxdepth 1 -name "*.ecf" -print -quit | head -n 1)
+  EC_CONFIG=$(find $BUILD_DIR -maxdepth 1 -name "*.ecf" -print -quit | head -n 1)
 else
-	echo "Using defined ecf " $EC_CONFIG | indent
-	EC_CONFIG=$BUILD_DIR/$EC_CONFIG
+  echo "Using defined ecf " $EC_CONFIG | indent
+  EC_CONFIG=$BUILD_DIR/$EC_CONFIG
 fi 
 if [ ! $EC_TARGET ]; then
-	EC_TARGET=$(sed -n 's/.*target name="\([A-z]*\).*/\1/p' <$EC_CONFIG | head -n 1)
+  EC_TARGET=$(sed -n 's/.*target name="\([A-z]*\).*/\1/p' <$EC_CONFIG | head -n 1)
 else
-	echo "Using defined target " $EC_TARGET | indent
+  echo "Using defined target " $EC_TARGET | indent
 fi
 
 echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 
 export KI_SOURCE=$BUILD_DIR/navigator-server
-echo $BUILD_DIR/navigator-server
 
 # echo "BUILD_DIR listing:"
 # ls -lah $BUILD_DIR
@@ -136,18 +141,16 @@ pwd
 # echo "find in ENV_DIR"
 # find $ENV_DIR -name libatk*
 # ld -latk-1.0 --verbose
-# ec -version
+ec -version
 ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
 
 cp -r $EC_DIR $BUILD_DIR
-cp -r EIFGENs $BUILD_DIR
-ls -lah $BUILD_DIR/.apt/usr/lib
-ls -lah /usr/lib
+# ls -lah $BUILD_DIR/.apt/usr/lib
+# ls -lah /usr/lib
 
 cd EIFGENs/$EC_TARGET/F_code
 finish_freezing
 chmod a+x $EC_TARGET
 cp $EC_TARGET $BUILD_DIR
-# cp -r ../../../EIFGENs $BUILD_DIR
+cp -r ../../../EIFGENs $BUILD_DIR
 cd $BUILD_DIR
-
