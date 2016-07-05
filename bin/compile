@@ -88,10 +88,10 @@ if [ ! -d $EC_DIR ]; then
 	cd $ISE_EIFFEL/library/store/dbms/rdbms/mysql/Clib
 	finish_freezing -library
 	popd
-	pushd .
-	cd $ISE_EIFFEL/studio/spec/$ISE_PLATFORM/include
-	sed -i -e "s/'\$LD'/\$LD/" -e "s|ccldflags='|ccldflags='-L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu |" config.sh
-	popd
+	# pushd .
+	# cd $ISE_EIFFEL/studio/spec/$ISE_PLATFORM/include
+	# sed -i -e "s/'\$LD'/\$LD/" -e "s|ccldflags='|ccldflags='-L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu |" config.sh
+	# popd
 fi
 
 echo "Eiffel Compiler installed" | indent
