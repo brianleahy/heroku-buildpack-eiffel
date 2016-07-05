@@ -127,8 +127,8 @@ echo $BUILD_DIR/navigator-server
 # echo "New lib dir listing:"
 # ls -lah $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu
 
-# echo "pwd:"
-# pwd
+echo "pwd:"
+pwd
 # echo "find in BUILD_DIR"
 # find $BUILD_DIR -name libatk*
 # echo "find in CACHE_DIR"
