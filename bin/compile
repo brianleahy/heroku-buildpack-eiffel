@@ -118,6 +118,7 @@ fi
 echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 
 export KI_SOURCE=$BUILD_DIR/navigator-server
+echo $BUILD_DIR/navigator-server
 
 # echo "BUILD_DIR listing:"
 # ls -lah $BUILD_DIR
