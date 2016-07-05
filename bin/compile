@@ -29,11 +29,17 @@ function export_env_dir() {
   fi
 }
 
-# parse and derive params
-#EC_PLATFORM=macosx-x86-64
+echo "Installing Dependencies"
+
+apt-get update
+# apt-get -y install mysql-server
+# apt-get -y install mysql_secure_installation
+# apt-get -y install mysql_install_db
+# apt-get -y install libmysqld-dev
+
 EC_PLATFORM=linux-x86-64
-EC_ARCHIVE=Eiffel_15.12_gpl_98497-$EC_PLATFORM.tar.bz2
-EC_BUILD=https://sourceforge.net/projects/eiffelstudio/files/EiffelStudio%2015.12/Build_98497/
+EC_ARCHIVE=Eiffel_16.05_gpl_98814-$EC_PLATFORM.tar.bz2
+EC_BUILD=https://sourceforge.net/projects/eiffelstudio/files/EiffelStudio%2016.05/Build_98814/
 BUILDPACK_DIR=$(cd $(dirname $0); cd ..; pwd) # absolute path of buildpack
 BUILD_DIR=$1
 CACHE_DIR=$2
@@ -49,35 +55,29 @@ if [ $RESET_CACHE ]; then
 fi
 
 EC_DIR="$CACHE_DIR/estudio"
-
-ISE_EIFFEL=$EC_DIR/Eiffel_15.12
+ISE_EIFFEL=$EC_DIR/Eiffel_16.05
 ISE_PLATFORM=$EC_PLATFORM
 PATH=$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH
-echo "PATH=$PATH"
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$BUILD_DIR/.apt/usr/share/pkgconfig
-echo "PKG_CONFIG_PATH=$PKG_CONFIG_PATH"
-find / -name *xinerama*
+MYSQLLIB=/usr/lib/x86_64-linux-gnu
+MYSQLINC=/usr/include/mysql
+
+export CFLAGS
+export MYSQLINC
+export MYSQLLIB
 export ISE_EIFFEL
 export ISE_PLATFORM
-# echo "LD=$LD"
+
 CFLAGS="-I$BUILD_DIR/.apt/usr/include -L$BUILD_DIR/.apt/usr/lib"
 CFLAGS="-I/usr/include -I$BUILD_DIR/.apt/usr/include -I$BUILD_DIR/.apt/usr/include/gtk-2.0 -I$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I$BUILD_DIR/.apt/usr/include/pango-1.0 -I$BUILD_DIR/.apt/usr/include/atk-1.0 -I$ISE_EIFFEL/unstable/library/network/socket/netssl/spec/include -L/usr/lib -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu -L$BUILD_DIR/.apt/usr/include"
-# LDFLAGS="-L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu"
-export CFLAGS
-# export LDFLAGS
-# LD="ld -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu"
-# export LD
-# echo "new LD=$LD"
-MYSQLINC=/usr/include/mysql
-export MYSQLINC
-MYSQLLIB=/usr/lib/x86_64-linux-gnu
-export MYSQLLIB
 
 if pkg-config --modversion gtk+-2.0; then
     echo "--->GTK exists"
 else
     echo "--->No GTK"
 fi
+
+echo "Finalizing Clibs"
 
 echo "-----> Checking Eiffel Compiler"
 if [ ! -d $EC_DIR ]; then
