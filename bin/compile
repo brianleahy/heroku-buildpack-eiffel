@@ -43,10 +43,10 @@ export_env_dir
 
 echo "-----> compile params: $BUILD_DIR $CACHE_DIR $ENV_DIR"
 
-if [ $RESET_CACHE ]; then
-  echo "-----> flushing cache"
-  rm -rf $CACHE_DIR/*
-fi
+# if [ $RESET_CACHE ]; then
+#   echo "-----> flushing cache"
+#   rm -rf $CACHE_DIR/*
+# fi
 
 EC_DIR="$CACHE_DIR/estudio"
 
@@ -97,6 +97,8 @@ if [ ! -d $EC_DIR ]; then
 fi
 
 echo "Eiffel Compiler installed" | indent
+
+ls $EC_CONFIG
  
 if [ ! $EC_CONFIG ]; then
   EC_CONFIG=$(find $BUILD_DIR -maxdepth 1 -name "*.ecf" -print -quit | head -n 1)
@@ -114,6 +116,7 @@ echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 
 export KI_SOURCE=$BUILD_DIR/navigator-server
 pwd
+
 ls $EC_CONFIG
 
 ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
