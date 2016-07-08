@@ -32,8 +32,8 @@ function export_env_dir() {
 # parse and derive params
 #EC_PLATFORM=macosx-x86-64
 EC_PLATFORM=linux-x86-64
-EC_ARCHIVE=Eiffel_16.05_gpl_98814-$EC_PLATFORM.tar.bz2
-EC_BUILD=https://sourceforge.net/projects/eiffelstudio/files/EiffelStudio%2016.05/Build_98814/
+EC_ARCHIVE=Eiffel_14.05_gpl_95417-$EC_PLATFORM.tar.bz2
+EC_BUILD=http://sourceforge.net/projects/eiffelstudio/files/EiffelStudio%2014.05/Build_95417/
 BUILDPACK_DIR=$(cd $(dirname $0); cd ..; pwd) # absolute path of buildpack
 BUILD_DIR=$1
 CACHE_DIR=$2
@@ -50,34 +50,18 @@ fi
 
 EC_DIR="$CACHE_DIR/estudio"
 
-ISE_EIFFEL=$EC_DIR/Eiffel_16.05
+ISE_EIFFEL=$EC_DIR/Eiffel_14.05
 ISE_PLATFORM=$EC_PLATFORM
 PATH=$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH
-echo "PATH=$PATH"
-PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$BUILD_DIR/.apt/usr/share/pkgconfig
-echo "PKG_CONFIG_PATH=$PKG_CONFIG_PATH"
-find / -name *xinerama*
 export ISE_EIFFEL
 export ISE_PLATFORM
-# echo "LD=$LD"
 CFLAGS="-I$BUILD_DIR/.apt/usr/include -L$BUILD_DIR/.apt/usr/lib"
-CFLAGS="-I/usr/include -I$BUILD_DIR/.apt/usr/include -I$BUILD_DIR/.apt/usr/include/gtk-2.0 -I$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I$BUILD_DIR/.apt/usr/include/pango-1.0 -I$BUILD_DIR/.apt/usr/include/atk-1.0 -I$ISE_EIFFEL/unstable/library/network/socket/netssl/spec/include -L/usr/lib -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu -L$BUILD_DIR/.apt/usr/include"
-# LDFLAGS="-L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu"
+CFLAGS="-I/usr/include -L/usr/lib"
 export CFLAGS
-# export LDFLAGS
-# LD="ld -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu"
-# export LD
-# echo "new LD=$LD"
 MYSQLINC=/usr/include/mysql
 export MYSQLINC
 MYSQLLIB=/usr/lib/x86_64-linux-gnu
 export MYSQLLIB
-
-if pkg-config --modversion gtk+-2.0; then
-    echo "--->GTK exists"
-else
-    echo "--->No GTK"
-fi
 
 echo "-----> Checking Eiffel Compiler"
 if [ ! -d $EC_DIR ]; then
@@ -94,21 +78,10 @@ if [ ! -d $EC_DIR ]; then
   cd $ISE_EIFFEL/library/store/dbms/rdbms/mysql/Clib
   finish_freezing -library
   popd
-  # pushd .
-  # cd $ISE_EIFFEL/studio/spec/$ISE_PLATFORM/include
-  # sed -i -e "s/'\$LD'/\$LD/" -e "s|ccldflags='|ccldflags='-L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu |" config.sh
-  # popd
 fi
 
 echo "Eiffel Compiler installed" | indent
-
-# echo "---> One-time config.sh patch of existing EC installation"
-# pushd .
-# cd $ISE_EIFFEL/studio/spec/$ISE_PLATFORM/include
-# sed -i "s|ccldflags='|ccldflags='-L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu |" config.sh
-# cat config.sh
-# popd
-
+ 
 if [ ! $EC_CONFIG ]; then
   EC_CONFIG=$(find $BUILD_DIR -maxdepth 1 -name "*.ecf" -print -quit | head -n 1)
 else
@@ -124,33 +97,17 @@ fi
 echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 
 export KI_SOURCE=$BUILD_DIR/navigator-server
-
-# echo "BUILD_DIR listing:"
-# ls -lah $BUILD_DIR
-# echo "CACHE_DIR listing:"
-# ls -lah $CACHE_DIR
-# echo "New lib dir listing:"
-# ls -lah $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu
-
-echo "pwd:"
 pwd
-# echo "find in BUILD_DIR"
-# find $BUILD_DIR -name libatk*
-# echo "find in CACHE_DIR"
-# find $CACHE_DIR -name libatk*
-# echo "find in ENV_DIR"
-# find $ENV_DIR -name libatk*
-# ld -latk-1.0 --verbose
-ec -version
+
 ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
 
 cp -r $EC_DIR $BUILD_DIR
-# ls -lah $BUILD_DIR/.apt/usr/lib
-# ls -lah /usr/lib
+cp -r EIFGENs $BUILD_DIR
+ls -lah $BUILD_DIR/.apt/usr/lib
+ls -lah /usr/lib
 
 cd EIFGENs/$EC_TARGET/F_code
 finish_freezing
 chmod a+x $EC_TARGET
 cp $EC_TARGET $BUILD_DIR
-cp -r ../../../EIFGENs $BUILD_DIR
 cd $BUILD_DIR
