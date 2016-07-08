@@ -120,11 +120,11 @@ cd $BUILD_DIR
 export KI_SOURCE=$BUILD_DIR/navigator-server
 pwd
 
-echo "-------> List Current Directory Contents <--------"
-ls
+# echo "-------> List Current Directory Contents <--------"
+# ls
 
 echo "-------> List Bild Directory Contents <--------"
-ls $BUILD_DIR
+ls $BUILD_DIR/navigator-server/Eiffel/infrastructure/applications/navigator_server/
 
 ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
 
