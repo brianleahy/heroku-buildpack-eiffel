@@ -97,8 +97,6 @@ if [ ! -d $EC_DIR ]; then
 fi
 
 echo "Eiffel Compiler installed" | indent
-
-ls $EC_CONFIG
  
 if [ ! $EC_CONFIG ]; then
   EC_CONFIG=$(find $BUILD_DIR -maxdepth 1 -name "*.ecf" -print -quit | head -n 1)
@@ -112,10 +110,8 @@ else
   echo "Using defined target " $EC_TARGET | indent
 fi
 
-echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
-
-echo $BUILD_DIR
-cd $BUILD_DIR
+# echo $BUILD_DIR
+# cd $BUILD_DIR
 
 export KI_SOURCE=$BUILD_DIR/navigator-server
 pwd
@@ -123,8 +119,10 @@ pwd
 # echo "-------> List Current Directory Contents <--------"
 # ls
 
-echo "-------> List Bild Directory Contents <--------"
-ls -R $BUILD_DIR/navigator-server/
+echo "-------> List Build Directory Contents <--------"
+ls -R $BUILD_DIR
+
+echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 
 ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
 
