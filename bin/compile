@@ -117,7 +117,7 @@ echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 export KI_SOURCE=$BUILD_DIR/navigator-server
 pwd
 
-ls $EC_CONFIG
+ls $BUILD_DIR
 
 ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
 
