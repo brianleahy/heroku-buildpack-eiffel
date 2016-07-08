@@ -117,6 +117,10 @@ echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 export KI_SOURCE=$BUILD_DIR/navigator-server
 pwd
 
+echo "-------> List Current Directory Contents <--------"
+ls
+
+echo "-------> List Bild Directory Contents <--------"
 ls $BUILD_DIR
 
 ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
