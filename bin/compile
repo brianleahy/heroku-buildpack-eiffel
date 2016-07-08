@@ -124,7 +124,7 @@ pwd
 # ls
 
 echo "-------> List Bild Directory Contents <--------"
-ls $BUILD_DIR/navigator-server/Eiffel/infrastructure/applications/navigator_server/
+ls -R $BUILD_DIR/navigator-server/
 
 ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
 
