@@ -118,7 +118,6 @@ pwd
 
 # echo "-------> List Current Directory Contents <--------"
 # ls
-sh $BUILD_DIR/submodule_update.sh
 echo "-------> List Build Directory Contents <--------"
 ls -R $BUILD_DIR 
 
