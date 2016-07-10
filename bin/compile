@@ -119,7 +119,8 @@ pwd
 # echo "-------> List Current Directory Contents <--------"
 # ls
 echo "-------> List Build Directory Contents <--------"
-ls /
+
+ls /tmp
 
 echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 
