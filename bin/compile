@@ -120,9 +120,7 @@ pwd
 # ls
 echo "-------> List Build Directory Contents <--------"
 
-cd $BUILD_DIR
-
-sh submodule_update.sh
+ls /tmp
 
 echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 
