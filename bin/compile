@@ -73,6 +73,8 @@ export MYSQLINC
 MYSQLLIB=/usr/lib/x86_64-linux-gnu
 export MYSQLLIB
 
+ln -s /usr/lib/x86_64-linux-gnu/libatk-1.0.so /usr/bin/ld/libatk-1.0.so
+
 if pkg-config --modversion gtk+-2.0; then
     echo "--->GTK exists"
 else
