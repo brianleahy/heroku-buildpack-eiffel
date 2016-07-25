@@ -117,17 +117,15 @@ else
   echo "Using defined target " $EC_TARGET | indent
 fi
 
-# echo $BUILD_DIR
-# cd $BUILD_DIR
+echo $BUILD_DIR
+cd $BUILD_DIR
 
 export KI_SOURCE=$BUILD_DIR/navigator-server
 pwd
 
-# echo "-------> List Current Directory Contents <--------"
-# ls
 echo "-------> List Build Directory Contents <--------"
 
-ls /tmp
+ls
 
 echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 
