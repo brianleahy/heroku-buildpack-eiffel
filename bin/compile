@@ -45,6 +45,7 @@ echo "-----> compile params: $BUILD_DIR $CACHE_DIR $ENV_DIR"
 
 # if [ $RESET_CACHE ]; then
 #   echo "-----> flushing cache"
+# ln -s /usr/lib/x86_64-linux-gnu/libatk-1.0.so /usr/bin/ld/libatk-1.0.so
 #   rm -rf $CACHE_DIR/*
 # fi
 
@@ -59,21 +60,25 @@ echo "PKG_CONFIG_PATH=$PKG_CONFIG_PATH"
 find / -name *xinerama*
 export ISE_EIFFEL
 export ISE_PLATFORM
-# echo "LD=$LD"
+
+
 CFLAGS="-I$BUILD_DIR/.apt/usr/include -L$BUILD_DIR/.apt/usr/lib"
 CFLAGS="-I/usr/include -I$BUILD_DIR/.apt/usr/include -I$BUILD_DIR/.apt/usr/include/gtk-2.0 -I$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I$BUILD_DIR/.apt/usr/include/pango-1.0 -I$BUILD_DIR/.apt/usr/include/atk-1.0 -I$ISE_EIFFEL/unstable/library/network/socket/netssl/spec/include -L/usr/lib -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu -L$BUILD_DIR/.apt/usr/include"
+
+# echo "LD=$LD"
 # LDFLAGS="-L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu"
-export CFLAGS
 # export LDFLAGS
 # LD="ld -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu"
 # export LD
 # echo "new LD=$LD"
+
+export CFLAGS
+
 MYSQLINC=/usr/include/mysql
 export MYSQLINC
 MYSQLLIB=/usr/lib/x86_64-linux-gnu
 export MYSQLLIB
 
-ln -s /usr/lib/x86_64-linux-gnu/libatk-1.0.so /usr/bin/ld/libatk-1.0.so
 
 if pkg-config --modversion gtk+-2.0; then
     echo "--->GTK exists"
@@ -130,8 +135,8 @@ ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
 
 # cp -r $EC_DIR $BUILD_DIR
 # cp -r EIFGENs $BUILD_DIR
-# ls -lah $BUILD_DIR/.apt/usr/lib
-# ls -lah /usr/lib
+ls -lah $BUILD_DIR/.apt/usr/lib
+ls -lah /usr/lib
 
 cd EIFGENs/$EC_TARGET/F_code
 finish_freezing
