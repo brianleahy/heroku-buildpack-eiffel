@@ -45,7 +45,8 @@ echo "-----> compile params: $BUILD_DIR $CACHE_DIR $ENV_DIR"
 
 # if [ $RESET_CACHE ]; then
 #   echo "-----> flushing cache"
-cp //usr/lib/x86_64-linux-gnu/libatk-1.0.so.0.21009.1 $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/libatk-1.0.so.0.21009.1
+# cp //usr/lib/x86_64-linux-gnu/ $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/
+cp -a //usr/lib/x86_64-linux-gnu/. $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/
 #   rm -rf $CACHE_DIR/*
 # fi
 
