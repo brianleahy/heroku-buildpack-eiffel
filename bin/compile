@@ -46,9 +46,11 @@ echo "-----> compile params: $BUILD_DIR $CACHE_DIR $ENV_DIR"
 # if [ $RESET_CACHE ]; then
 #   echo "-----> flushing cache"
 # cp //usr/lib/x86_64-linux-gnu/ $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/
-cp -a //usr/lib/x86_64-linux-gnu/. $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/
 #   rm -rf $CACHE_DIR/*
 # fi
+
+cp -a //usr/lib/x86_64-linux-gnu/. $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/
+cp $BUILD_DIR/net_ssl-safe.ecf $ISE_EIFFEL/unstable/library/network/socket/netssl/net_ssl-safe.ecf
 
 EC_DIR="$CACHE_DIR/estudio"
 
@@ -63,11 +65,11 @@ find / -name *xinerama*
 export ISE_EIFFEL
 export ISE_PLATFORM
 
-CFLAGS="-L/usr/lib -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu -L$BUILD_DIR/.apt/usr/include -L$BUILD_DIR/.apt/usr/lib -I/usr/include -I$BUILD_DIR/.apt/usr/include -I$BUILD_DIR/.apt/usr/include/gtk-2.0 -I$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I$BUILD_DIR/.apt/usr/include/pango-1.0 -I$BUILD_DIR/.apt/usr/include/atk-1.0 -I$ISE_EIFFEL/unstable/library/network/socket/netssl/spec/include"
+CFLAGS=" -L/usr/lib -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu -L$BUILD_DIR/.apt/usr/include -L$BUILD_DIR/.apt/usr/lib -I/usr/include -I$BUILD_DIR/.apt/usr/include -I$BUILD_DIR/.apt/usr/include/gtk-2.0 -I$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I$BUILD_DIR/.apt/usr/include/pango-1.0 -I$BUILD_DIR/.apt/usr/include/atk-1.0 -I$ISE_EIFFEL/unstable/library/network/socket/netssl/spec/include"
 
 # echo "LD=$LD"
-LDFLAGS="-R $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu"
-export LDFLAGS
+# LDFLAGS="-R $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu"
+# export LDFLAGS
 # LD="ld -L$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu"
 # export LD
 # echo "new LD=$LD"
