@@ -50,7 +50,6 @@ echo "-----> compile params: $BUILD_DIR $CACHE_DIR $ENV_DIR"
 # fi
 
 cp -a //usr/lib/x86_64-linux-gnu/. $BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/
-cp $BUILD_DIR/net_ssl-safe.ecf $ISE_EIFFEL/unstable/library/network/socket/netssl/net_ssl-safe.ecf
 
 EC_DIR="$CACHE_DIR/estudio"
 
@@ -104,6 +103,8 @@ if [ ! -d $EC_DIR ]; then
   finish_freezing -library
   popd
 fi
+
+cp $BUILD_DIR/net_ssl-safe.ecf $ISE_EIFFEL/unstable/library/network/socket/netssl/net_ssl-safe.ecf
 
 echo "Eiffel Compiler installed" | indent
  
