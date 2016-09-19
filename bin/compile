@@ -80,6 +80,12 @@ export MYSQLINC
 MYSQLLIB=/usr/lib/x86_64-linux-gnu
 export MYSQLLIB
 
+#----- Setup NGINX -----#
+
+ln -s $BUILD_DIR/collage /etc/nginx/sites-enabled
+service nginx reload
+
+#----- Setup Eiffel -----#
 
 if pkg-config --modversion gtk+-2.0; then
     echo "--->GTK exists"
