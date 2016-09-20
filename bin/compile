@@ -59,10 +59,10 @@ PATH=$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH
 LIBRARY_PATH=$LIBRARY_PATH:$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu
 echo "PATH=$PATH"
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$BUILD_DIR/.apt/usr/share/pkgconfig
-KD_WEB=$BUILD_DIR/navigator-web/www/
+KI_PIXMAPS=$BUILD_DIR/navigator-web/www/images/icons/pixmaps
 echo "PKG_CONFIG_PATH=$PKG_CONFIG_PATH"
 find / -name *xinerama*
-export KD_WEB
+export KI_PIXMAPS
 export ISE_EIFFEL
 export ISE_PLATFORM
 
