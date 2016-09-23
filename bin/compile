@@ -87,6 +87,12 @@ export MYSQLLIB
 ln -s $BUILD_DIR/collage /$BUILD_DIR/.apt/etc/nginx/sites-enabled
 service nginx reload
 
+#----- Setup XVFB -----#
+
+Xvfb :1 -screen 0 1024x768x24
+DISPLAY=:1
+export DISPLAY
+
 #----- Setup Eiffel -----#
 
 if pkg-config --modversion gtk+-2.0; then
