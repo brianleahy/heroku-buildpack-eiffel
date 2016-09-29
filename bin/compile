@@ -111,7 +111,6 @@ if [ ! -d $EC_DIR ]; then
   finish_freezing -library
   popd
 fi
-rm $ISE_EIFFEL/library/vision2/implementation/gtk/support/ev_gtk_dependent_application_imp.e
 cp $BUILD_DIR/net_ssl-safe.ecf $ISE_EIFFEL/unstable/library/network/socket/netssl/net_ssl-safe.ecf
 cp $BUILD_DIR/ev_gtk_dependent_application_imp.e $ISE_EIFFEL/library/vision2/implementation/gtk/kernel/ev_gtk_dependent_application_imp.e
 cp $BUILD_DIR/ev_gtk_environment.e $ISE_EIFFEL/library/vision2/implementation/gtk/kernel/ev_gtk_environment.e
