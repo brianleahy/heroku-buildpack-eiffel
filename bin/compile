@@ -159,5 +159,5 @@ chmod a+x $EC_TARGET
 cp $EC_TARGET $BUILD_DIR
 cd $BUILD_DIR
 
-rm $ISE_EIFFEL
+# rm $ISE_EIFFEL
 
