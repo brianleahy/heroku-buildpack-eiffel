@@ -113,9 +113,8 @@ if [ ! -d $EC_DIR ]; then
 fi
 
 cp $BUILD_DIR/net_ssl-safe.ecf $ISE_EIFFEL/unstable/library/network/socket/netssl/net_ssl-safe.ecf
-cp $BUILD_DIR/ev_gtk_dependent_application_imp.e $ISE_EIFFEL/library/vision2/implementation/gtk/kernel/ev_gtk_dependent_application_imp.e
-cp $BUILD_DIR/ev_gtk_environment.e $ISE_EIFFEL/library/vision2/implementation/gtk/kernel/ev_gtk_environment.e
-cp $BUILD_DIR/ev_pixel_buffer_imp.e $ISE_EIFFEL/library/vision2/implementation/gtk/support/ev_pixel_buffer_imp.e
+cp $BUILD_DIR/implementation $ISE_EIFFEL/library/vision2/implementation
+cp $BUILD_DIR/interface $ISE_EIFFEL/library/vision2/interface
 #cp $BUILD_DIR/ev_shared_transport_i.e $ISE_EIFFEL/library/vision2/implementation/implementation_interface/support/ev_shared_transport_i.e
 #cp $BUILD_DIR/ev_abstract_pick_and_dropable.e $ISE_EIFFEL/library/vision2/interface/properties/ev_abstract_pick_and_dropable.e
 #cp $BUILD_DIR/ev_application_imp.e $ISE_EIFFEL/library/vision2/implementation/gtk/kernel/ev_application_imp.e
