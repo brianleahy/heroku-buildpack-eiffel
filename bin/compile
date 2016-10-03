@@ -113,9 +113,9 @@ if [ ! -d $EC_DIR ]; then
 fi
 
 cp $BUILD_DIR/net_ssl-safe.ecf $ISE_EIFFEL/unstable/library/network/socket/netssl/net_ssl-safe.ecf
-cp -r $BUILD_DIR/vision2/ $ISE_EIFFEL/library/vision2/
+# cp -r $BUILD_DIR/vision2/ $ISE_EIFFEL/library/vision2/
 
-# rm $ISE_EIFFEL
+rm  -r $ISE_EIFFEL/
 #cp $BUILD_DIR/ev_shared_transport_i.e $ISE_EIFFEL/library/vision2/implementation/implementation_interface/support/ev_shared_transport_i.e
 #cp $BUILD_DIR/ev_abstract_pick_and_dropable.e $ISE_EIFFEL/library/vision2/interface/properties/ev_abstract_pick_and_dropable.e
 #cp $BUILD_DIR/ev_application_imp.e $ISE_EIFFEL/library/vision2/implementation/gtk/kernel/ev_application_imp.e
