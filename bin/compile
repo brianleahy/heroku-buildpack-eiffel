@@ -116,6 +116,7 @@ cp $BUILD_DIR/net_ssl-safe.ecf $ISE_EIFFEL/unstable/library/network/socket/netss
 
 rm  -r $ISE_EIFFEL/library/vision2/
 cp -r $BUILD_DIR/vision2/ $ISE_EIFFEL/library/vision2/
+chmod -R 777 $ISE_EIFFEL/library/vision2/implementation/gtk/Clib/
 
 ls -l $ISE_EIFFEL/library/vision2/implementation/gtk/Clib/
 
