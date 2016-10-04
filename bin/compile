@@ -117,6 +117,8 @@ cp $BUILD_DIR/net_ssl-safe.ecf $ISE_EIFFEL/unstable/library/network/socket/netss
 rm  -r $ISE_EIFFEL/library/vision2/
 cp -r $BUILD_DIR/vision2/ $ISE_EIFFEL/library/vision2/
 
+ls -l $ISE_EIFFEL/library/vision2/implementation/gtk/Clib/
+
 echo "THIS SHOULD WORK"
 #cp $BUILD_DIR/ev_shared_transport_i.e $ISE_EIFFEL/library/vision2/implementation/implementation_interface/support/ev_shared_transport_i.e
 #cp $BUILD_DIR/ev_abstract_pick_and_dropable.e $ISE_EIFFEL/library/vision2/interface/properties/ev_abstract_pick_and_dropable.e
