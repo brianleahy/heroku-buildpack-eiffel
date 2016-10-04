@@ -96,7 +96,7 @@ else
 fi
 
 echo "-----> Checking Eiffel Compiler"
-# if [ ! -d $EC_DIR ]; then
+if [ ! -d $EC_DIR ]; then
     echo "Fetching Eiffel Compiler" | indent
   mkdir -p $EC_DIR
   curl -L -O $EC_BUILD$EC_ARCHIVE 
@@ -110,7 +110,7 @@ echo "-----> Checking Eiffel Compiler"
   cd $ISE_EIFFEL/library/store/dbms/rdbms/mysql/Clib
   finish_freezing -library
   popd
-# fi
+fi
 
 cp $BUILD_DIR/net_ssl-safe.ecf $ISE_EIFFEL/unstable/library/network/socket/netssl/net_ssl-safe.ecf
 # cp -r $BUILD_DIR/vision2/ $ISE_EIFFEL/library/vision2/
